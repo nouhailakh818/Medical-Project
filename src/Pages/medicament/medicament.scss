@@ -1,0 +1,100 @@
+.table {
+  display: flex; /* Use flexbox to position sidebar and content */
+  
+  
+  
+  .content {
+    flex: 1;
+    padding: 20px;
+  
+    h1 {
+      margin-bottom: 20px;
+      margin-left: 4%;
+    }
+  
+    .search-container {
+      display: flex;
+      justify-content: flex-end;
+      margin-bottom: 20px;
+  
+      .search-bar {
+        padding: 8px;
+        border-radius: 4px;
+        border: 1px solid #ccc;
+        font-size: 16px;
+        width: 250px; 
+      }
+      
+      .addbtn {
+        margin-right: 20px;
+      }
+    }
+  
+    .accordion-item {
+      margin-bottom: 10px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      overflow: hidden;
+  
+      .accordion-header {
+        display: flex;
+        justify-content: space-between;
+        background-color: #f2f2f2;
+        padding: 10px;
+        cursor: pointer;
+  
+        h2 {
+          margin: 0;
+          font-size: 18px;
+        }
+  
+        span {
+          font-size: 18px;
+        }
+      }
+  
+      .accordion-content {
+        padding: 10px;
+        background-color: #fff;
+  
+        table {
+          width: 100%;
+          border-collapse: collapse;
+  
+          th, td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: left;
+          }
+  
+          th {
+            background-color: #f2f2f2;
+          }
+        }
+      }
+    }
+  }
+}
+
+.sidebar {
+  width: 250px;
+  background-color: #244786;
+  min-height: 100vh;
+  color: #ffffff;
+}
+
+ .menu-item {
+  color: #ffffff;
+}
+
+.sidebar .menu-item:hover {
+  background-color: #1c2537;
+}
+
+.sidebar .sub-menu {
+  background-color: #3a475e;
+}
+
+.sidebar .sub-menu .menu-item:hover {
+  background-color: #2a3549;
+}

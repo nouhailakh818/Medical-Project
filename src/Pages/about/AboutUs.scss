@@ -1,0 +1,129 @@
+// Variables
+$primary-color: #3498db;
+$secondary-color: #21cd69;
+$text-color: #333;
+$background-color: #fffefe;
+$card-background: #ffffff;
+$card-border: #dddddd;
+$border-radius: 10px;
+$shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+$card-spacing: 50px;
+$max-width: 1200px;
+
+// Global Styles
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: $background-color;
+}
+
+// About Us Container
+.about-us-container {
+    padding: 20px;
+    text-align: center;
+    margin: 0 auto; // Center the container
+  }
+  
+  // Hero Section
+  .hero-section {
+    background: url('../../images/image4.jpg') no-repeat center center;
+    background-size: cover;
+    width: 100%; // Prend toute la largeur
+    height: 35rem;
+    display: flex;
+    flex-direction: column; // Stack children vertically
+    justify-content: flex-start; // Align children at the top
+    align-items: center;
+    padding: 2rem; // Add padding around the text
+    border-radius: 0; // Remove border-radius to cover the entire width
+    box-shadow: $shadow;
+    
+    h1 {
+      color: rgb(15, 14, 14);
+      font-size: 2.5rem;
+      text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+      margin: 0;
+      padding: 1rem 0; // Add vertical padding
+      width: 100%;
+      text-align: center;
+      box-sizing: border-box; // Ensure padding is included in the width
+      animation: fadeInDown 1.5s ease-out; /* Appliquer l'animation ici */
+    }
+  }
+  
+  // Cards Section
+  .cards-section {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: $card-spacing;
+  
+    .card {
+      background-color: $card-background;
+      border: 1px solid $card-border;
+      border-radius: $border-radius;
+      box-shadow: $shadow;
+      padding: 20px;
+      text-align: left;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      animation: fadeInDown 1.5s ease-out; /* Appliquer l'animation ici */
+  
+      &:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+      }
+  
+      .icon {
+        font-size: 2.5rem;
+        margin-bottom: 15px;
+      }
+  
+      h2 {
+        color: $primary-color;
+        margin-bottom: 10px;
+      }
+  
+      p {
+        color: $text-color;
+        line-height: 1.6;
+      }
+    }
+  }
+  
+  // Footer
+  .about-us__footer {
+    margin-top: 70px;
+    text-align: center;
+    padding: 20px;
+    background-color: $secondary-color;
+    color: rgb(12, 10, 10);
+    border-radius: $border-radius;
+    
+  }
+  @keyframes fadeInDown {
+    0% {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  // Responsive Media Queries
+  @media (max-width: 768px) {
+    .hero-section {
+      h1 {
+        font-size: 2rem;
+      }
+    }
+  
+    .cards-section {
+      grid-template-columns: 1fr; // Full-width cards on small screens
+    }
+  
+    .card {
+      margin: 0 auto;
+    }
+  }
+  
