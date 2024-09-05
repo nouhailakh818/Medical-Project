@@ -29,7 +29,7 @@ exports.signup = (req, res) => {
         });
       } else {
         console.log("role req from body", req.body.roles);
-        user.setRoles([3]).then(() => {
+        user.setRoles([1]).then(() => {
           res.status(200).send({ message: "User registered successfully!" }); // Basic success message
         });
       }
@@ -58,14 +58,21 @@ exports.signin = async (req, res) => {
         .status(401)
         .send({ accessToken: null, message: "Invalid password!" });
     }
-
-    const token = jwt.sign({ id: user.id }, config.secret, {
-      algorithm: "HS256",
-      expiresIn: 86400, // 24 hours
-    });
-
     const roles = await user.getRoles();
     const authorities = roles.map((role) => "ROLE_" + role.name.toUpperCase());
+
+    const token = jwt.sign(
+      { 
+        id: user.id, 
+        roles: authorities // Use the authorities array
+      }, 
+      config.secret, 
+      {
+        algorithm: "HS256",
+        expiresIn: 86400 // 24 hours
+      }
+    );
+
 
     // Envoie de la réponse avec les rôles
     res.status(200).send({

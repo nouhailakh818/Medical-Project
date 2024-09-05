@@ -25,8 +25,8 @@ const User = () => {
         <div className="labs-grid">
           {laboratories.length > 0 ? (
             laboratories.map((lab, index) => (
-<Link key={index} to={`/laboratoires/${lab.id}/categories`} className="lab-card-link">
-       <div className="lab-card" style={{ backgroundImage: `url(http://localhost:3333/${lab.image})` }}>
+<Link key={index} to={`/${lab.id}/medicaments`}  state={{ id: lab.id }} className="lab-card-link" >
+<div className="lab-card" style={{ backgroundImage: `url(http://localhost:3333/${lab.image})` }}>
                   <div className="overlay">
                     <h2>{lab.name}</h2>
                     <p>{lab.description}</p>

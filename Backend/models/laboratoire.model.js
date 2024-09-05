@@ -32,14 +32,13 @@ module.exports = (sequelize) => {
     timestamps: false 
   });
 
-  /*laboratoire.associate = (models) => {
+  laboratoire.associate = (models) => {
     laboratoire.belongsToMany(models.medicament, {
-      through: 'LaboMedicament',
-      foreignKey: 'labo_id',
-      otherKey: 'medicament_id'
+      through: 'laboMedics',
+      foreignKey: 'laboId',
+      otherKey: 'medicamentId',
     });
-  };*/
- 
+  };
 
   return laboratoire;
 };

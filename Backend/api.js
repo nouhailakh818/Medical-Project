@@ -14,8 +14,10 @@ console.log(userController.assignRole); // Should not be undefined
 console.log(userController.removeRole);
 // Configuration CORS
 app.use(cors());
-
-
+//cart
+const cartRoutes = require('./routes/cart.routes');
+app.use('/cart', cartRoutes);
+//upload
 app.use('/', laboratoireRoutes);
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 

@@ -1,25 +1,31 @@
-const { DataTypes } = require('sequelize');
 
-module.exports =   (sequelize) => {
-    const laboMedic = sequelize.define('laboMedic', {
-       id: {
-           type: DataTypes.INTEGER,
-           allowNull: false,
-           primaryKey: true,
-           autoIncrement: true
-       },
-       laboId: {
-           type: DataTypes.INTEGER,
-           allowNull: false
-       },
-       medicamentId: {
-           type: DataTypes.INTEGER,
-           allowNull: false
-       }
-   }, {
-    timestamps: false 
-  });
+// models/LaboMedicament.js
+module.exports = (sequelize, DataTypes) => {
+    const laboMedic = sequelize.define('laboMedics', {
+        id: {
+            type: DataTypes.INTEGER,
+            autoIncrement: true,
+            primaryKey: true,
+          },
+      laboId: {
+        type: DataTypes.INTEGER,
+        references: {
+          model: 'laboratoire',
+          key: 'id',
+        },
+      },
+      medicamentId: {
+        type: DataTypes.INTEGER,
+        references: {
+          model: 'medicament',
+          key: 'id',
+        },
+      },
+    }, {
+      tableName: 'laboMedics',
+      timestamps: false,
+    });
   
-
-   return laboMedic;
-} 
+    return laboMedic;
+  };
+  

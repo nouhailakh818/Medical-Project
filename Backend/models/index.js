@@ -30,9 +30,8 @@ db.Role = require('../models/role.models.js')(sequelize, Sequelize.DataTypes);
 db.User = require('../models/user.models.js')(sequelize, Sequelize.DataTypes);
 
 // Define associations
-//db.laboratoire.associate(db);
-//db.medicament.associate(db);
-
+db.laboratoire.associate(db);
+db.medicament.associate(db);
 // Define relationships
 db.Role.belongsToMany(db.User, {
   through: "UserRoles",
@@ -57,13 +56,18 @@ db.medicament.belongsToMany(db.laboratoire, {
   foreignKey: "medicamentId"
 });*/
 
-db.laboMedic.belongsTo(db.laboratoire, {
+/*db.laboMedic.belongsTo(db.laboratoire, {
   as: 'laboratoire',
+  foreignKey:"medicamentId"
 });
 
 db.laboMedic.belongsTo(db.medicament, {
   as: 'medicament',
-});
+  foreignKey:"laboId"
+});*/
+db.laboratoire.belongsToMany(db.medicament, { through: 'laboMedics', foreignKey: 'laboId' });
+db.medicament.belongsToMany(db.laboratoire, { through: 'laboMedics', foreignKey: 'medicamentId' });
+
 
 
 db.ROLES = ["user", "admin", "moderator"];

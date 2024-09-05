@@ -1,7 +1,6 @@
 const db = require('../models'); 
 
 
-const Medicament = db.medicament;
 
 
 
@@ -67,7 +66,7 @@ const getLaboratoires = async (req, res) => {
   }
   
 };*/
-const getMedicationsForLaboratoire = async (req, res) => {
+/*const getMedicationsForLaboratoire = async (req, res) => {
     try {
       const { id } = req.params;
   
@@ -90,12 +89,30 @@ const getMedicationsForLaboratoire = async (req, res) => {
       console.error('Error fetching medications:', error);
       res.status(500).json({ message: 'Internal server error' });
     }
-  };
+  };*/
   
+  const { Medicament, Laboratoire } = require('../models');
+
+const getMedicationsByLabo = async (req, res) => {
+  const laboId = req.params.id;
+  try {
+    const medications = await db.medicament.findAll({
+      include: [{
+        model: db.laboratoire,
+        where: { id: laboId }
+      }]
+    });
+    res.json(medications);
+  } catch (error) {
+    res.status(500).send('Error retrieving medications');
+  }
+};
+
 
 
 module.exports = {
     updateLaboratoire,
       getLaboratoires,
-      getMedicationsForLaboratoire
+      //getMedicationsForLaboratoire
+      getMedicationsByLabo
 };
