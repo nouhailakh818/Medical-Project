@@ -44,14 +44,14 @@ const Sign = () => {
       });
 
       if (response.status === 200) {
-        notifySuccess(); // Afficher une notification de succès
+        notifySuccess(); 
         setTimeout(() => {
-          navigate("/login"); // Rediriger après 2 secondes
+          navigate("/login"); 
         }, 2000);
       }
     } catch (error) {
       if (error.response && error.response.data.message) {
-        notifyError(error.response.data.message); // Afficher le message d'erreur du backend
+        notifyError(error.response.data.message); 
       } else {
         notifyError("Erreur lors de l'inscription.");
       }

@@ -11,7 +11,7 @@ const Sidebar = ({ laboId }) => {
             <Link to={`/${laboId}/medicaments`}>Medicaments</Link> 
           </li>
           <li>
-            <Link to="/users">Laboratoires </Link>
+            <Link to="/users">Laboratories </Link>
           </li>
         </ul>
       </nav>

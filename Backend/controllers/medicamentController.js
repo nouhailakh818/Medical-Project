@@ -15,10 +15,10 @@ const getMedicaments = async (req, res) => {
   }
 };
 
+
 const updateMedicament = async (req, res) => {
   const { id } = req.params;
   const { name, description, price, quantity, expiration_date, type } = req.body;
-
   try {
     const medicament = await db.medicament.findByPk(id); 
     if (!medicament) {
