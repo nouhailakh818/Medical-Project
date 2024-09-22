@@ -10,12 +10,12 @@ const SidebarComponent = ({ onOptionClick }) => {
         <ul>
           <li>
        
-              <FaList /> Liste
+              <FaList /> List
             
           </li>
           <li>
             <Link to="/facture">
-              <FaList /> Factures
+              <FaList /> Invoices
             </Link>
           </li>
         </ul>

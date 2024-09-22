@@ -116,7 +116,6 @@
   }
 }
 
-/* Button icon styles */
 button {
   background: none;
   border: none;
@@ -139,7 +138,7 @@ button:hover svg {
 
 @media (max-width: 1024px) {
   .table {
-    flex-direction: column; /* Stack sidebar and content */
+    flex-direction: column; 
   }
 
   .sidebar {
