@@ -164,10 +164,10 @@
   }
 
   .article-sidebar button {
-    justify-content: center; // Center the icon and text in buttons on smaller screens
+    justify-content: center; 
     text-align: center;
     svg {
-      margin: 0; // Remove icon margin on small screens
+      margin: 0; 
     }
   }
 }

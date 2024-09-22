@@ -60,10 +60,8 @@ const Sign = () => {
 
   const validateName = (name) => /^[a-zA-Z]+$/.test(name);
   const validateEmail = (email) => {
-    // Expression régulière pour vérifier l'email sans espaces
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     
-    // Vérifier que l'email ne contient pas d'espaces
     return emailRegex.test(email) && !/\s/.test(email);
   };
   const validatePassword = (password) => {
@@ -95,7 +93,6 @@ const Sign = () => {
 
   const handleLastNameChange = (e) => {
     const value = e.target.value;
-    // Filtrer les caractères non alphabétiques
     const filteredValue = value.replace(/[^a-zA-Z]/g, '');
     setLastName(filteredValue);
     setLastNameError(validateName(filteredValue) ? "" : "Le prénom doit contenir uniquement des lettres");

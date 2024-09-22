@@ -62,7 +62,6 @@ const Log = () => {
     return lengthValid && uppercaseValid && lowercaseValid && numberValid;
   };
 
-  // Handle input changes
   const handleEmailChange = (e) => {
     const value = e.target.value;
     setEmail(value);
