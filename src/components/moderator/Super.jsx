@@ -1,14 +1,19 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 import "./Super.scss"
+import {  useNavigate } from 'react-router';
+import AuthContext from '../context/AuthContext'
+
 
 const API_URL = "http://localhost:3333";
 
 const Super = () => {
+  const { userRole, isAuthenticated } = useContext(AuthContext);
   const [users, setUsers] = useState([]);
   const [roles, setRoles] = useState([]);
   const [selectedUserId, setSelectedUserId] = useState(null);
   const [selectedRoleId, setSelectedRoleId] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchUsers = async () => {
@@ -41,11 +46,10 @@ const Super = () => {
         return;
       }
   
-      // Appel à l'API pour assigner le rôle
       await axios.post(`${API_URL}/users/${selectedUserId}/assign-role`, { roleId: selectedRoleId });
       alert('Role assigned successfully');
   
-      // Rafraîchir la liste des utilisateurs pour refléter les modifications
+
       const response = await axios.get(API_URL + '/users');
       setUsers(response.data);
     } catch (error) {
@@ -63,14 +67,17 @@ const Super = () => {
       await axios.post(`${API_URL}/users/${selectedUserId}/remove-role`, { roleId: selectedRoleId });
       alert('Role removed successfully');
 
-      // Refresh users list to reflect changes
       const response = await axios.get(API_URL + '/users');
       setUsers(response.data);
     } catch (error) {
       console.error('Error removing role:', error);
     }
   };
-
+useEffect(() => {
+  if(isAuthenticated && userRole !== 'ROLE_MODERATOR'){
+    navigate('/not-authorized');
+  }
+},[userRole, isAuthenticated, navigate]);
   return (
     <div className="super-container">
       <h2>Moderator Role Management</h2>

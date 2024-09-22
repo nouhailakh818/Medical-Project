@@ -1,6 +1,6 @@
 
-// models/LaboMedicament.js
-module.exports = (sequelize, DataTypes) => {
+const { DataTypes } = require('sequelize');
+module.exports = (sequelize) => {
     const laboMedic = sequelize.define('laboMedics', {
         id: {
             type: DataTypes.INTEGER,

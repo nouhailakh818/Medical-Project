@@ -1,14 +1,9 @@
-//importation des modules 
 const db = require("../models");
 const ROLES = db.ROLES;
 const User = db.User;
 
-//verification
 
 checkDuplicateUsernameOrEmail = (req, res, next) => {
-  // Username
- 
-    // Email
     User.findOne({
       where: {
         email: req.body.email
@@ -25,7 +20,6 @@ checkDuplicateUsernameOrEmail = (req, res, next) => {
     });
   };
 
-//verification de role
 checkRolesExisted = (req, res, next) => {
   if (req.body.roles) {
     for (let i = 0; i < req.body.roles.length; i++) {
@@ -40,7 +34,6 @@ checkRolesExisted = (req, res, next) => {
   
   next();
 };
-//exportation de middleware
 const verifySignUp = {
   checkDuplicateUsernameOrEmail: checkDuplicateUsernameOrEmail,
   checkRolesExisted: checkRolesExisted

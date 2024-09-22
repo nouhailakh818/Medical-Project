@@ -19,20 +19,22 @@ const sequelize = new Sequelize(
 
 const db = {};
 
-// Load models
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
+
 db.laboratoire = require('../models/laboratoire.model.js')(sequelize, Sequelize.DataTypes);
-db.medicament = require('../models/medicament.models.js')(sequelize, Sequelize.DataTypes);
+db.medicament = require('../models/medicament.models.js')(sequelize, Sequelize.DataTypes);  
 db.laboMedic = require('../models/labo-medic.model.js')(sequelize, Sequelize.DataTypes);
+db.Article = require('../models/article.model.js')(sequelize, Sequelize.DataTypes); 
+db.Order = require('../models/ Order.models.js')(sequelize, Sequelize.DataTypes); 
+db.OrderItem = require('../models/OrderItem.models.js')(sequelize, Sequelize.DataTypes);  
+db.Role = require('../models/role.models.js')(sequelize, Sequelize.DataTypes);  
+db.User = require('../models/user.models.js')(sequelize, Sequelize.DataTypes);  
+db.Facture = require('../models/Facture.models.js')(sequelize, Sequelize.DataTypes); 
 
-db.Role = require('../models/role.models.js')(sequelize, Sequelize.DataTypes);
-db.User = require('../models/user.models.js')(sequelize, Sequelize.DataTypes);
-
-// Define associations
 db.laboratoire.associate(db);
 db.medicament.associate(db);
-// Define relationships
+
 db.Role.belongsToMany(db.User, {
   through: "UserRoles",
   as: "users",
@@ -44,27 +46,12 @@ db.User.belongsToMany(db.Role, {
   foreignKey: "userId"
 });
 
-/*db.laboratoire.belongsToMany(db.medicament, {
-  through: "LaboMedicament",
-  as: "medicament",
-  foreignKey: "laboId"
-});
+db.Order.hasMany(db.OrderItem, { foreignKey: 'orderId', as: 'items' });
+db.OrderItem.belongsTo(db.Order, { foreignKey: 'orderId', as: 'order' });
 
-db.medicament.belongsToMany(db.laboratoire, {
-  through: "LaboMedicament",
-  as: "laboratoire",
-  foreignKey: "medicamentId"
-});*/
+db.Facture.belongsTo(db.User, { foreignKey: 'userId', as: 'user' });
+db.Facture.belongsTo(db.Order, { foreignKey: 'orderId', as: 'order' });
 
-/*db.laboMedic.belongsTo(db.laboratoire, {
-  as: 'laboratoire',
-  foreignKey:"medicamentId"
-});
-
-db.laboMedic.belongsTo(db.medicament, {
-  as: 'medicament',
-  foreignKey:"laboId"
-});*/
 db.laboratoire.belongsToMany(db.medicament, { through: 'laboMedics', foreignKey: 'laboId' });
 db.medicament.belongsToMany(db.laboratoire, { through: 'laboMedics', foreignKey: 'medicamentId' });
 

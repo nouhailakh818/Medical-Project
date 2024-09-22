@@ -6,7 +6,6 @@ const controller = require('../controllers/laboratoire.controller');
 
 router.get('/laboratoires', laboratoireController.getLaboratoires);
 router.post('/laboratoire', upload.single('image'), laboratoireController.updateLaboratoire);
-//router.get('/:id/medicament',laboratoireController.getMedicationsForLaboratoire);
 router.get('/:id/medicaments', controller.getMedicationsByLabo);
 
 module.exports = router;  

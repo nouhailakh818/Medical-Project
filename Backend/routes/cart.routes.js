@@ -1,9 +1,7 @@
-// routes/cart.routes.js
 const express = require('express');
 const Cart = require('../models/cart.model');
 const router = express.Router();
 
-// Add medicament to cart
 router.post('/add', async (req, res) => {
   const { userId, medicamentId, quantity } = req.body;
   try {
@@ -23,7 +21,6 @@ router.post('/add', async (req, res) => {
   }
 });
 
-// Get cart items
 router.get('/user/:userId', async (req, res) => {
   try {
     const cartItems = await Cart.findAll({

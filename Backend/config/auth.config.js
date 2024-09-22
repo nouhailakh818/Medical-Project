@@ -1,3 +1,3 @@
 module.exports = {
-    secret: "bezkoder-medical-key"
-  };
+  secret: process.env.SECRET_KEY
+};

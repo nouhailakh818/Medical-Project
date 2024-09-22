@@ -1,7 +1,5 @@
-// controllers/role.controller.js
 const Role = require('../models/role.model');
 
-// Récupère tous les rôles disponibles
 exports.getAllRoles = async (req, res) => {
   try {
     const roles = await Role.findAll();

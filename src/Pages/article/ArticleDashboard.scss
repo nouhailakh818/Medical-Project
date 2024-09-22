@@ -1,0 +1,32 @@
+.article-dashboard {
+    padding: 20px;
+  }
+  
+  .article-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .article-table th, .article-table td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: left;
+  }
+  
+  .article-table th {
+    background-color: #f4f4f4;
+  }
+  
+  .action-button {
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-size: 16px;
+    color: #4eaa03;
+    margin-right: 10px;
+  }
+  
+  .action-button:hover {
+    color: rgb(2, 145, 12);
+  }
+  

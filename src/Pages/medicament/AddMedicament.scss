@@ -1,6 +1,6 @@
 .popup-content {
     padding: 20px;
-    max-width: 500px;
+   // max-width: 500px;
     margin: 0 auto;
     background-color: #fff;
     border-radius: 8px;
@@ -9,7 +9,7 @@
     h2 {
       margin-top: 0;
       font-size: 1.5rem;
-      color: #333;
+      color: #5eab1f;
     }
   
     form {
@@ -30,7 +30,7 @@
   
       button {
         padding: 10px 15px;
-        background-color: #007bff;
+        background-color:  #7bc043;
         border: none;
         color: #fff;
         border-radius: 4px;
@@ -39,7 +39,7 @@
         transition: background-color 0.3s;
   
         &:hover {
-          background-color: #0056b3;
+          background-color: #538f23
         }
       }
     }

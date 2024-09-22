@@ -18,20 +18,17 @@ exports.getRoles = async (req, res) => {
     res.status(500).send({ message: error.message });
   }
 };
-// Assign roles to a user
 exports.assignRoles = async (req, res) => {
-  console.log(req.params?.id)
+  console.log(req.params?.id);
   const userId = req.params.id;
   const roleId = req.body.roleId;
-
-  //res.send(userId )
 
   try {
     const user = await User.findByPk(userId);
     if (!user) return res.status(404).json({ message: "User not found" });
 
     const roles = await Role.findAll({ where: { id: roleId } });
-    await user.setRoles([roles[0].id]); // Assuming you have setRoles method defined
+    await user.setRoles([roles[0].id]);
 
     res.json({ message: "Roles assigned successfully" });
   } catch (err) {
@@ -49,7 +46,6 @@ exports.removeRoleFromUser = async (req, res) => {
       return res.status(404).json({ message: "User not found" });
     }
 
-    // Remove the role from the user
     await user.removeRole(roleId);
 
     res.json({ message: "Role removed successfully" });

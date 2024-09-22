@@ -1,0 +1,96 @@
+.facture-page {
+    padding: 20px;
+    background-color: #f9f9f9;
+    min-height: 100vh;
+  
+    h1 {
+      text-align: center;
+      color: #333;
+      margin-bottom: 20px;
+    }
+  
+    .facture-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 0 auto;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  
+      thead {
+        background-color: #4caf50;
+        color: white;
+      }
+  
+      th,
+      td {
+        padding: 12px 15px;
+        text-align: center;
+        border: 1px solid #ddd;
+      }
+  
+      tbody {
+        tr:nth-child(even) {
+          background-color: #f2f2f2;
+        }
+  
+        tr:hover {
+          background-color: #e0e0e0;
+        }
+      }
+  
+      th {
+        font-size: 16px;
+        font-weight: bold;
+      }
+  
+      td {
+        font-size: 14px;
+      }
+  
+      button {
+        padding: 6px 12px;
+        font-size: 14px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+  
+        &:first-child {
+          background-color: #4caf50;
+          color: white;
+          margin-right: 5px;
+        }
+  
+        &:last-child {
+          background-color: #f44336;
+          color: white;
+        }
+  
+        &:disabled {
+          background-color: #ccc;
+          cursor: not-allowed;
+        }
+  
+        &:hover:not(:disabled) {
+          opacity: 0.9;
+        }
+      }
+    }
+  
+    // Responsive design for smaller screens
+    @media (max-width: 768px) {
+      .facture-table {
+        width: 100%;
+        font-size: 12px;
+  
+        th,
+        td {
+          padding: 8px;
+        }
+  
+        button {
+          font-size: 12px;
+        }
+      }
+    }
+  }
+  

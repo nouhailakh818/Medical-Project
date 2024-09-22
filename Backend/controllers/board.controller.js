@@ -3,7 +3,7 @@ exports.allAccess = (req, res) => {
   };
   
   exports.userBoard = (req, res) => {
-    res.redirect('/users'); // Redirection vers la page /users
+    res.redirect('/users'); 
   };
   
   exports.adminBoard = (req, res) => {

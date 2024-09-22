@@ -52,11 +52,12 @@ const AddMedicament = ({ open, onClose, refreshMedicaments }) => {
             />
           </label>
           <label>Price:
-            <input
+          <input
               type='number'
               value={price}
               onChange={(e) => setPrice(e.target.value)}
               required
+              min="5" 
             />
           </label>
           <label>Quantity:

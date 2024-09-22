@@ -1,5 +1,5 @@
 module.exports = (sequelize, Sequelize) => {
-  const User = sequelize.define('User', { // Use singular form for model names
+  const User = sequelize.define('User', { 
     email: {
       type: Sequelize.STRING,
       unique: true,
@@ -10,11 +10,10 @@ module.exports = (sequelize, Sequelize) => {
       allowNull: false
     }
   }, {
-    tableName: 'users', // Ensure table name is in plural or as required
-    timestamps: true // Optional: to add createdAt and updatedAt columns
+    tableName: 'users', 
+  
   });
 
-  // Association method
   User.associate = (models) => {
     User.belongsToMany(models.Role, {
       through: 'UserRoles',

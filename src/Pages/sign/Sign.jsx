@@ -59,7 +59,13 @@ const Sign = () => {
   };
 
   const validateName = (name) => /^[a-zA-Z]+$/.test(name);
-  const validateEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  const validateEmail = (email) => {
+    // Expression régulière pour vérifier l'email sans espaces
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    
+    // Vérifier que l'email ne contient pas d'espaces
+    return emailRegex.test(email) && !/\s/.test(email);
+  };
   const validatePassword = (password) => {
     return password.length >= 6 && /[A-Z]/.test(password) && /[a-z]/.test(password) && /[0-9]/.test(password);
   };
@@ -82,14 +88,17 @@ const Sign = () => {
 
   const handleNameChange = (e) => {
     const value = e.target.value;
-    setName(value);
-    setNameError(validateName(value) ? "" : "Le nom doit contenir uniquement des lettres");
+    const filteredValue = value.replace(/[^a-zA-Z]/g, '');
+    setName(filteredValue);
+    setNameError(validateName(filteredValue) ? "" : "Le nom doit contenir uniquement des lettres");
   };
 
   const handleLastNameChange = (e) => {
     const value = e.target.value;
-    setLastName(value);
-    setLastNameError(validateName(value) ? "" : "Le prénom doit contenir uniquement des lettres");
+    // Filtrer les caractères non alphabétiques
+    const filteredValue = value.replace(/[^a-zA-Z]/g, '');
+    setLastName(filteredValue);
+    setLastNameError(validateName(filteredValue) ? "" : "Le prénom doit contenir uniquement des lettres");
   };
 
   return (

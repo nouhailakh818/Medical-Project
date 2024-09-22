@@ -2,7 +2,6 @@ const db = require("../models");
 const config = require("../config/auth.config");
 const User = db.User;
 const Role = db.Role;
-
 const Op = db.Sequelize.Op;
 
 var jwt = require("jsonwebtoken");
@@ -24,20 +23,20 @@ exports.signup = (req, res) => {
           },
         }).then((roles) => {
           user.setRoles(roles).then(() => {
-            res.status(200).send({ message: "User registered successfully!" }); // Basic success message
+            res.status(200).send({ message: "User registered successfully!" }); 
           });
         });
       } else {
         console.log("role req from body", req.body.roles);
         user.setRoles([1]).then(() => {
-          res.status(200).send({ message: "User registered successfully!" }); // Basic success message
+          res.status(200).send({ message: "User registered successfully!" }); 
         });
       }
     })
     .catch((err) => {
       res
         .status(500)
-        .send({ message: "There was a problem registering the user." }); // Basic error message
+        .send({ message: "There was a problem registering the user." }); 
     });
 };
 
@@ -58,27 +57,28 @@ exports.signin = async (req, res) => {
         .status(401)
         .send({ accessToken: null, message: "Invalid password!" });
     }
+
+    
     const roles = await user.getRoles();
     const authorities = roles.map((role) => "ROLE_" + role.name.toUpperCase());
 
     const token = jwt.sign(
       { 
         id: user.id, 
-        roles: authorities // Use the authorities array
+        roles: authorities 
       }, 
       config.secret, 
       {
         algorithm: "HS256",
-        expiresIn: 86400 // 24 hours
+        expiresIn: 86400 
       }
     );
 
 
-    // Envoie de la réponse avec les rôles
     res.status(200).send({
       id: user.id,
       email: user.email,
-      roles: authorities, // Envoie des rôles dans la réponse
+      roles: authorities, 
       accessToken: token,
     });
   } catch (err) {

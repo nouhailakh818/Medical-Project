@@ -1,4 +1,3 @@
-// models/medicament.model.js
 const { DataTypes } = require('sequelize');
 
 module.exports = (sequelize) => {
@@ -18,11 +17,14 @@ module.exports = (sequelize) => {
     },
     price: {
       type: DataTypes.FLOAT,
-      allowNull: false
+      allowNull: false,
+      defaultValue:5
+
     },
     quantity: {
       type: DataTypes.INTEGER,
-      allowNull: false
+      allowNull: false,
+      defaultValue:1
     },
     expiration_date: {
       type: DataTypes.DATEONLY,

@@ -1,52 +1,57 @@
 const express = require("express");
 const cors = require("cors");
-const path = require('path'); // Import the path module
+const path = require('path'); 
+require('dotenv').config();
+
 
 const app = express();
 const db = require("./models");
-const userController = require('./controllers/user.controller'); // Import your user controller
+const userController = require('./controllers/user.controller'); 
 const laboratoireRoutes = require('./routes/laboratoire.routes');
+const articleRoutes = require('./routes/article.routes');
+const orderRoutes = require('./routes/orderRoutes'); 
+const factureRoutes = require('./routes/factureRoutes');
 
-// Log the models to debug
+
 console.log('Role model in api.js:', db.Role);
 console.log('User model in api.js:', db.User);
-console.log(userController.assignRole); // Should not be undefined
+console.log(userController.assignRole); 
 console.log(userController.removeRole);
-// Configuration CORS
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use(cors());
-//cart
+
 const cartRoutes = require('./routes/cart.routes');
 app.use('/cart', cartRoutes);
-//upload
+
 app.use('/', laboratoireRoutes);
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
+app.use('/api/articles', articleRoutes);
 
-// Middleware to parse request bodies
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use('/api/factures', factureRoutes);
 
-// Define routes directly
+
+app.use('/api/orders', orderRoutes);
+
 app.get('/users', userController.getAllUsers);
 app.post('/users/:id/assign-role', userController.assignRoles);
 app.post('/users/:userId/remove-role', userController.removeRoleFromUser );
 app.get('/roles', userController.getRoles);
 
-// Import and use other routes if needed
 const medicamentRoutes = require('./routes/medicament.routes');
 const boardRoutes = require('./routes/board.routes');
 require('./routes/auth.routes')(app);
 
-// Use routes in the application
 app.use('/', medicamentRoutes);
 app.use('/api/board', boardRoutes);
 
-// Base route
+
 app.get("/", (req, res) => {
   res.json({ message: "Welcome to bezkoder application." });
 });
 
-// Initialize base data
 const initial = async () => {
   await db.Role.upsert({ id: 1, name: "user" });
   await db.Role.upsert({ id: 2, name: "moderator" });
@@ -55,12 +60,11 @@ const initial = async () => {
 
 db.sequelize.sync({ alter: true }).then(() => {
   console.log('Database synchronized');
-  initial(); // Initialize base data
+  initial();
 }).catch(err => {
   console.error('Database synchronization error:', err);
 });
 
-// Start server
 app.listen(3333, () => {
   console.log('Server is listening on port 3333');
 });

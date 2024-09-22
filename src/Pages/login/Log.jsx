@@ -13,7 +13,7 @@ const Log = () => {
   const [emailError, setEmailError] = useState('');
   const [password, setPassword] = useState("");
   const [passwordError, setPasswordError] = useState("");
-  const { login } = useContext(AuthContext);  // Access login function from AuthContext
+  const { login } = useContext(AuthContext); 
   const notify = () => toast.error('Login failed. Please check your credentials.');
   const navigate = useNavigate(); 
 
@@ -29,10 +29,9 @@ const Log = () => {
       const token = response.data.accessToken;
       const roles = response.data.roles;
 
-      // Update AuthContext with token and roles
+      console.log(roles)
       login(token, roles[0]);
 
-      // Redirect based on role
       if (roles.includes("ROLE_ADMIN")) {
         navigate("/medicament");
       } else if (roles.includes("ROLE_USER")) {
@@ -46,10 +45,12 @@ const Log = () => {
     }
   };
 
-  // Validation functions
   const validateEmail = (email) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
+    
+    const noSpaces = !/\s/.test(email);
+    
+    return emailRegex.test(email) && noSpaces;
   };
 
   const validatePassword = (password) => {
@@ -137,10 +138,7 @@ const Log = () => {
               </Link>
             </div>
 
-            <span className='forgotPassword'>
-              Forgot your password? <br />
-              <a href='#3'>Click here</a>
-            </span>
+            
           </form>
         </div>
       </div>
